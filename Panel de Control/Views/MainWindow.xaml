@@ -1,0 +1,298 @@
+﻿<Window x:Class="Panel_de_Control.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Sibio"
+        WindowState="Maximized"
+        Background="#F5F7FA"
+        PreviewMouseDown="Window_PreviewMouseDown">
+
+
+    <Window.Resources>
+        <!-- ETIQUETA PARA ESTILOS O RECURSOS REUTILIZABLES-->
+        <ResourceDictionary>
+            <!--SE IMPORTA EL DICCIONARIO CON LOS ESTILOS-->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="77*"/>
+            <ColumnDefinition Width="329*"/>
+            <ColumnDefinition Width="405*"/>
+        </Grid.ColumnDefinitions>
+        <!-- FILAS DEL LAYOUT -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- BARRA SUPERIOR (CORREGIDA) -->
+        <Border Grid.Row="0"
+                Background="White"
+                BorderBrush="#E5E7EB"
+                BorderThickness="0,0,0,1" Grid.ColumnSpan="3">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- LOGO Y NOMBRE -->
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            Margin="20,0,337,0" Height="49" Grid.ColumnSpan="2">
+
+
+
+                    <StackPanel Orientation="Horizontal" Height="41" Width="253">
+                        <Image Source="/Assets/Images/LogoSibioCompleto.png"
+                            Width="85"
+                            Height="41"
+                            Stretch="Uniform"/>
+
+                        <TextBlock Text="Sistema de Gestión Biomédica"
+                                   FontSize="11"
+                                   Foreground="Gray" Height="13" Width="165"/>
+                    </StackPanel>
+
+                </StackPanel>
+
+                <!-- MENÚ CENTRAL -->
+                <StackPanel Grid.Column="1"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left" Margin="23,0,0,0" Width="322">
+
+                    <!--BOTON PANEL DE CONTROL-->
+                    <Button Grid.Column="1"
+                        Style="{StaticResource IconButtonStyle}"
+                        Tag="&#xE80F;"
+                        Content="Panel De Control"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Margin="20,0,20,0"
+                        Background="#2563EB"
+                        BorderBrush="#C3C7C5"
+                        BorderThickness="1"
+                        Foreground="white"/>
+
+                    <!--BOTON INDICADORES-->
+                    <Button Grid.Column="2"
+                        Style="{StaticResource IconButtonStyle}"
+                        Tag="&#xE9D2;"
+                        Content="Indicadores"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,20,0"
+                        Background="#2563EB"
+                        BorderBrush="#C3C7C5"
+                        BorderThickness="1"
+                        Foreground="white"/>
+
+                </StackPanel>
+
+                <!-- BOTÓN CERRAR SESIÓN -->
+                <Button Grid.Column="2"
+                    Style="{StaticResource IconButtonStyle}"
+                    Tag="&#xE8AC;"
+                    Content="Cerrar Sesión"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Margin="0,0,20,0"
+                    Background="#F3F4F6"
+                    BorderBrush="#C3C7C5"
+                    BorderThickness="1"
+                    Foreground="#374151"/>
+
+            </Grid>
+
+        </Border>
+
+        <!-- CONTENIDO (placeholder para que veas que todo funciona) -->
+        <StackPanel Margin="30,30,30,30" Grid.Row="2" Grid.ColumnSpan="3">
+
+            <!-- TITULO -->
+            <TextBlock Text="Panel de Control"
+               FontSize="26"
+               FontWeight="Bold"/>
+
+            <TextBlock Text="Gestión de equipos médicos y biomédicos"
+               FontSize="14"
+               Foreground="#6B7280"
+               Margin="0,0,0,20"/>
+
+            <!-- TARJETAS -->
+            <UniformGrid Columns="4" Margin="0,0,0,25">
+
+                <!-- (DEJAMOS TUS TARJETAS TAL CUAL, NO CAMBIAN) -->
+
+                <!-- CARD 1 -->
+                <Border CornerRadius="12" BorderBrush="#3B82F6" BorderThickness="2,0,0,0"
+                Background="White" Margin="5" Padding="20">
+                    <StackPanel>
+                        <TextBlock Text="Total de Equipos" FontWeight="SemiBold"/>
+                        <TextBlock Text="6" FontSize="26" FontWeight="Bold" Margin="0,10,0,5"/>
+                        <TextBlock Text="Equipos registrados" Foreground="#6B7280"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- CARD 2 -->
+                <Border CornerRadius="12" BorderBrush="#10B981" BorderThickness="2,0,0,0"
+                Background="White" Margin="5" Padding="20">
+                    <StackPanel>
+                        <TextBlock Text="Operativos" FontWeight="SemiBold"/>
+                        <TextBlock Text="5" FontSize="26" FontWeight="Bold" Margin="0,10,0,5"/>
+                        <TextBlock Text="Equipos en operación" Foreground="#6B7280"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- CARD 3 -->
+                <Border CornerRadius="12" BorderBrush="#60A5FA" BorderThickness="2,0,0,0"
+                Background="White" Margin="5" Padding="20">
+                    <StackPanel>
+                        <TextBlock Text="En Mantenimiento" FontWeight="SemiBold"/>
+                        <TextBlock Text="1" FontSize="26" FontWeight="Bold" Margin="0,10,0,5"/>
+                        <TextBlock Text="Requieren atención" Foreground="#6B7280"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- CARD 4 -->
+                <Border CornerRadius="12" BorderBrush="#EF4444" BorderThickness="2,0,0,0"
+                Background="White" Margin="5" Padding="20">
+                    <StackPanel>
+                        <TextBlock Text="Peticiones Pendientes" FontWeight="SemiBold"/>
+                        <TextBlock Text="5" FontSize="26" FontWeight="Bold" Margin="0,10,0,5"/>
+                        <TextBlock Text="Requieren revisión" Foreground="#6B7280"/>
+                    </StackPanel>
+                </Border>
+
+            </UniformGrid>
+
+            <!-- SECCION INVENTARIO -->
+            <Border Background="White"
+            CornerRadius="12"
+            Padding="20"
+            BorderBrush="#E5E7EB"
+            BorderThickness="1">
+
+                <StackPanel>
+
+                    <!-- TITULO TABLA -->
+                    <TextBlock Text="Inventario de Equipos Médicos"
+                       FontSize="18"
+                       FontWeight="Bold"/>
+
+                    <TextBlock Text="Gestiona y visualiza todos biomédicos los equipos registrados"
+                       Foreground="Gray"
+                       Margin="0,5,0,15"/>
+
+                    <!-- BUSCADOR Y BOTONES -->
+                    <Grid Margin="0,0,0,15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox Style="{StaticResource ResourceKey=SearchTextBoxStyle}"/>
+
+
+                        <!--BOTON GESTIONAR COLUMNAS-->
+                        <Button Grid.Column="1"
+                            Content="Gestionar Columnas"
+                            Style="{StaticResource TextButtonStyle}"
+                            Background="#E5E7EB"/>
+                        <!--BOTON AGREGAR EQUIPO-->
+                        <Button Grid.Column="2"
+                            Style="{StaticResource IconButtonStyle}"
+                            Tag="&#xE9D2;"
+                            Content="Agregar Equipo"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Right"
+                            Margin="0,0,20,0"
+                            Background="#2563EB"
+                            BorderBrush="#C3C7C5"
+                            BorderThickness="1"
+                            Foreground="white"/>
+
+                    </Grid>
+
+                    <!-- TABLA -->
+                    <DataGrid x:Name="tablaEquipos"
+                            Style="{StaticResource ModernDataGrid}"
+                            ColumnHeaderStyle="{StaticResource ModernDataGridHeader}"
+                            RowStyle="{StaticResource ModernDataGridRow}"
+                            CellStyle="{StaticResource ModernDataGridCell}"
+                            RowHeight="45"
+                            AlternatingRowBackground="#FAFAFA"
+                            AlternationCount="2"
+                            CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn x:Name="ColActivo" Header="Numero Activo" Binding="{Binding Activo}"/>
+                            <DataGridTextColumn x:Name="ColNombre" Header="Nombre" Binding="{Binding Nombre}" />
+                            <DataGridTextColumn x:Name="ColMarca" Header="Marca" Binding="{Binding Marca}"/>
+                            <DataGridTextColumn x:Name="ColModelo" Header="Modelo" Binding="{Binding Modelo}"/>
+                            <DataGridTextColumn x:Name="ColSerial" Header="Serial" Binding="{Binding Serie}"/>
+                            <DataGridTextColumn x:Name="ColMPeriodicidad" Header="Periodicidad De Mantenimiento" Binding="{Binding Periodicidad}"/>
+                            <DataGridTextColumn x:Name="Calibracion" Header="Periodicidad De Calibracion" Binding="{Binding PeriodicidadC}" Width="*"/>
+
+
+                            <!-- BOTON DE ESTADO -->
+                            <DataGridTemplateColumn Header="Estado">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Border Background="#10B981"
+                                                CornerRadius="12"
+                                                    
+                                                Padding="10,4"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Estado}"
+                                                    Foreground="White"
+                                                    FontSize="12"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"/>
+                                            </Border>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <!-- BOTON ACCIONES O MOSTRAR-->
+                            <DataGridTemplateColumn Header="Acciones" Width="80">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Width="30"
+                                            Height="30"
+                                            Background="Transparent"
+                                            BorderBrush="#D1D5DB"
+                                            BorderThickness="1"
+                                            Cursor="Hand">
+
+                                            <TextBlock Text="👁"
+                                                FontSize="14"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"/>
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </Grid>
+
+</Window>
