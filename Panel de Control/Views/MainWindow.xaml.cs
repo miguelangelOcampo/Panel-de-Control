@@ -56,9 +56,12 @@ namespace Panel_de_Control.Views
         
         
         //BOTONES
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_CerrarSesion(object sender, RoutedEventArgs e)
         {
-
+            Login login = new Login();
+            Application.Current.MainWindow = login;
+            login.Show();
+            this.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

@@ -37,7 +37,9 @@ namespace Panel_de_Control.Views
 
         private void BtnRegistro_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Ventana de registro (pendiente)");
+            SignUp Registro = new SignUp();
+            Registro.Show();
+            this.Close();
         }
     }
 }

@@ -110,7 +110,8 @@
                     Background="#F3F4F6"
                     BorderBrush="#C3C7C5"
                     BorderThickness="1"
-                    Foreground="#374151"/>
+                    Foreground="#374151"
+                    Click="Button_CerrarSesion"/>
 
             </Grid>
 
