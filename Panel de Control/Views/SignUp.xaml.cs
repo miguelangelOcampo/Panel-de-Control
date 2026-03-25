@@ -23,5 +23,14 @@ namespace Panel_de_Control.Views
         {
             InitializeComponent();
         }
+        private void BtnVolver_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+        private void BtnCrear_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
+

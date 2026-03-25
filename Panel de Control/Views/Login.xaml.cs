@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Panel_de_Control.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,9 +38,8 @@ namespace Panel_de_Control.Views
 
         private void BtnRegistro_Click(object sender, RoutedEventArgs e)
         {
-            SignUp Registro = new SignUp();
-            Registro.Show();
-            this.Close();
+            SignUp registro = new SignUp();
+            registro.ShowDialog();
         }
     }
 }
