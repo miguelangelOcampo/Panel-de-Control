@@ -1,0 +1,224 @@
+﻿<Window x:Class="Panel_de_Control.Views.Indicadores"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Indicadores"
+        WindowState="Maximized"
+        Background="#F5F7FA">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+
+        <!-- FILAS -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- NAV -->
+        <Border Grid.Row="0"
+                Background="White"
+                BorderBrush="#E5E7EB"
+                BorderThickness="0,0,0,1">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- LOGO -->
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            Margin="20,0,0,0">
+
+                    <Image Source="/Assets/Images/LogoSibioCompleto.png"
+                           Width="85"
+                           Height="41"/>
+
+                    <TextBlock Text="Sistema de Gestión Biomédica"
+                               FontSize="11"
+                               Foreground="Gray"
+                               Margin="10,10,0,0"/>
+                </StackPanel>
+
+                <!-- MENU -->
+                <StackPanel Grid.Column="1"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            Margin="20,0,0,0">
+
+                    <Button Style="{StaticResource IconButtonStyle}"
+                            Tag="&#xE80F;"
+                            Content="Panel De Control"
+                            Margin="0,0,20,0"
+                            Click="Button_PanelControl"/>
+
+                    <Button Style="{StaticResource IconButtonStyle}"
+                            Tag="&#xE9D2;"
+                            Content="Indicadores"
+                            Background="#2563EB"
+                            Foreground="White"
+                            BorderBrush="#C3C7C5"
+                            BorderThickness="1"/>
+                </StackPanel>
+
+                <!-- CERRAR -->
+                <Button Grid.Column="2"
+                        Style="{StaticResource IconButtonStyle}"
+                        Tag="&#xE8AC;"
+                        Content="Cerrar Sesión"
+                        Margin="0,0,20,0"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Background="#F3F4F6"
+                        BorderBrush="#C3C7C5"
+                        BorderThickness="1"
+                        Click="Button_CerrarSesion"/>
+            </Grid>
+        </Border>
+
+        <!-- CONTENIDO -->
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="30">
+
+                <!-- TITULOS -->
+                <TextBlock Text="Indicadores y Análisis"
+                           Style="{StaticResource TitleText}" Margin="0,0,0,4"/>
+
+                <TextBlock Text="Métricas detalladas y tendencias del sistema biomédico"
+                           Style="{StaticResource SubtitleText}" Margin="0,0,0,25"/>
+
+                <!-- TARJETAS -->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="16"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- 1 -->
+                    <Border Style="{StaticResource IndicatorCardStyle}" BorderBrush="#14B8A6">
+                        <StackPanel>
+                            <TextBlock Text="↻" HorizontalAlignment="Right" Foreground="#14B8A6"/>
+                            <TextBlock Text="Tasa de Operatividad" Style="{StaticResource SubtitleText}"/>
+                            <TextBlock Text="83.3%" Style="{StaticResource BigNumberText}" Margin="0,8,0,0"/>
+                            <TextBlock Text="+2.5% vs mes anterior" Foreground="#14B8A6"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 2 -->
+                    <Border Grid.Column="2" Style="{StaticResource IndicatorCardStyle}" BorderBrush="#3B82F6">
+                        <StackPanel>
+                            <TextBlock Text="⏱" HorizontalAlignment="Right" Foreground="#3B82F6"/>
+                            <TextBlock Text="Tiempo Promedio Resolución" Style="{StaticResource SubtitleText}"/>
+                            <TextBlock Text="3.2 días" Style="{StaticResource BigNumberText}"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 3 -->
+                    <Border Grid.Row="2" Style="{StaticResource IndicatorCardStyle}" BorderBrush="#EF4444">
+                        <StackPanel>
+                            <TextBlock Text="⚠" HorizontalAlignment="Right" Foreground="#EF4444"/>
+                            <TextBlock Text="Alertas Críticas" Style="{StaticResource SubtitleText}"/>
+                            <TextBlock Text="3" Style="{StaticResource BigNumberText}"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 4 -->
+                    <Border Grid.Row="2" Grid.Column="2" Style="{StaticResource IndicatorCardStyle}" BorderBrush="#8B5CF6">
+                        <StackPanel>
+                            <TextBlock Text="$" HorizontalAlignment="Right" Foreground="#8B5CF6"/>
+                            <TextBlock Text="Costo Promedio Mensual" Style="{StaticResource SubtitleText}"/>
+                            <TextBlock Text="$49.500" Style="{StaticResource BigNumberText}"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <!-- ALERTAS -->
+                <Border Style="{StaticResource CardStyle}" Margin="0,30,0,0" BorderBrush="#E5E7EB" BorderThickness="1">
+                    <StackPanel>
+
+                        <TextBlock Text="⚠ Equipos que Requieren Atención"
+                                   FontSize="16"
+                                   FontWeight="SemiBold"
+                                   Foreground="#EF4444"/>
+
+                        <StackPanel Margin="0,15,0,0">
+
+                            <Border Style="{StaticResource InnerCardStyle}">
+                                <Grid>
+                                    <TextBlock Text="Ventilador UCI 102"/>
+                                    <Border Style="{StaticResource BadgeStyle}"
+                                            Background="#EF4444"
+                                            HorizontalAlignment="Right">
+                                        <TextBlock Text="Alta" Style="{StaticResource BadgeTextStyle}"/>
+                                    </Border>
+                                </Grid>
+                            </Border>
+
+                            <Border Style="{StaticResource InnerCardStyle}">
+                                <Grid>
+                                    <TextBlock Text="Desfibrilador Urgencias"/>
+                                    <Border Style="{StaticResource BadgeStyle}"
+                                            Background="#3B82F6"
+                                            HorizontalAlignment="Right">
+                                        <TextBlock Text="Media" Style="{StaticResource BadgeTextStyle}"/>
+                                    </Border>
+                                </Grid>
+                            </Border>
+
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- GRAFICAS -->
+                <TextBlock Text="Mantenimientos"
+                           Style="{StaticResource TitleText}"
+                           FontSize="20"
+                           Margin="0,35,0,15"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- BARRAS -->
+                    <Border Style="{StaticResource CardStyle}">
+                        <Canvas Height="240" Background="#F8FAFC">
+                            <Rectangle Canvas.Left="30" Canvas.Bottom="40" Width="25" Height="120" Fill="#2563EB"/>
+                            <Rectangle Canvas.Left="70" Canvas.Bottom="40" Width="25" Height="150" Fill="#2563EB"/>
+                            <Rectangle Canvas.Left="45" Canvas.Bottom="40" Width="25" Height="50" Fill="#14B8A6"/>
+                        </Canvas>
+                    </Border>
+
+                    <!-- LINEA -->
+                    <Border Grid.Column="2" Style="{StaticResource CardStyle}">
+                        <Canvas Height="240" Background="#F8FAFC">
+                            <Polyline Points="30,170 70,90 110,190 150,110"
+                                      Stroke="#2563EB"
+                                      StrokeThickness="3"/>
+                        </Canvas>
+                    </Border>
+
+                </Grid>
+
+            </StackPanel>
+        </ScrollViewer>
+
+    </Grid>
+</Window>

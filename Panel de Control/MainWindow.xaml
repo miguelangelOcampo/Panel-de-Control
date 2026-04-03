@@ -1,4 +1,4 @@
-﻿<Window x:Class="Panel_de_Control.Views.MainWindow"
+﻿<Window x:Class="Panel_de_Control.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Sibio"
@@ -12,18 +12,13 @@
         <ResourceDictionary>
             <!--SE IMPORTA EL DICCIONARIO CON LOS ESTILOS-->
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Styles/Styles.xaml"/>
+                <ResourceDictionary Source="Style/Styles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
 
     <!-- CONTENEDOR PRINCIPAL -->
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="77*"/>
-            <ColumnDefinition Width="329*"/>
-            <ColumnDefinition Width="405*"/>
-        </Grid.ColumnDefinitions>
         <!-- FILAS DEL LAYOUT -->
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
@@ -35,7 +30,7 @@
         <Border Grid.Row="0"
                 Background="White"
                 BorderBrush="#E5E7EB"
-                BorderThickness="0,0,0,1" Grid.ColumnSpan="3">
+                BorderThickness="0,0,0,1">
 
             <Grid>
 
@@ -95,8 +90,7 @@
                         Background="#2563EB"
                         BorderBrush="#C3C7C5"
                         BorderThickness="1"
-                        Foreground="white"
-                        Click="Button_Indicadores"/>
+                        Foreground="white"/>
 
                 </StackPanel>
 
@@ -111,15 +105,14 @@
                     Background="#F3F4F6"
                     BorderBrush="#C3C7C5"
                     BorderThickness="1"
-                    Foreground="#374151"
-                    Click="Button_CerrarSesion"/>
+                    Foreground="#374151"/>
 
             </Grid>
 
         </Border>
 
         <!-- CONTENIDO (placeholder para que veas que todo funciona) -->
-        <StackPanel Margin="30,30,30,30" Grid.Row="2" Grid.ColumnSpan="3">
+        <StackPanel Margin="30" Grid.Row="2">
 
             <!-- TITULO -->
             <TextBlock Text="Panel de Control"
@@ -184,7 +177,7 @@
             Padding="20"
             BorderBrush="#E5E7EB"
             BorderThickness="1">
-
+                
                 <StackPanel>
 
                     <!-- TITULO TABLA -->
@@ -209,7 +202,6 @@
 
                         <!--BOTON GESTIONAR COLUMNAS-->
                         <Button Grid.Column="1"
-                            Click="Button_GestionarColumnas"
                             Content="Gestionar Columnas"
                             Style="{StaticResource TextButtonStyle}"
                             Background="#E5E7EB"/>
@@ -237,64 +229,35 @@
                             RowHeight="45"
                             AlternatingRowBackground="#FAFAFA"
                             AlternationCount="2"
-                            CanUserAddRows="False"
-                            AutoGenerateColumns="False">
-                        
+                            CanUserAddRows="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn x:Name="Id" Header="Numero Activo" Binding="{Binding Id}" ElementStyle="{StaticResource TextColumnStyle}"/>
-                            <DataGridTextColumn x:Name="Activo" Header="Numero Activo" Binding="{Binding Activo}"/>
-                            <DataGridTextColumn x:Name="Nombre" Header="Nombre" Binding="{Binding Nombre}" />
-                            <DataGridTextColumn x:Name="Serie" Header="Serial" Binding="{Binding Serie}"/>
-                            <DataGridTextColumn x:Name="Modelo" Header="Modelo" Binding="{Binding Modelo}"/>
-                            <DataGridTextColumn x:Name="Marca" Header="Marca" Binding="{Binding Marca}"/>
-                            <DataGridTextColumn x:Name="Periodicidad" Header="Periodicidad De Mantenimiento" Binding="{Binding Periodicidad}"/>
-                            <DataGridTextColumn x:Name="PeriodicidadC" Header="Periodicidad De Calibracion" Binding="{Binding PeriodicidadC}"/>
-                            <DataGridTextColumn x:Name="Ubicacion" Header="Ubicacion" Binding="{Binding Ubicacion}"/>
-                            <DataGridTextColumn x:Name="Responsable" Header="Responsable" Binding="{Binding Responsable}"/>
-                            <DataGridTextColumn x:Name="FechaAdquisicion" Header="Fecha De Adquisicion" Binding="{Binding FechaAdquisicion}" Width="*"/>
-                            
-                            <!--COLUMNA ESTADO (COLOR DINAMICO)-->
+                            <DataGridTextColumn x:Name="ColActivo" Header="Numero Activo" Binding="{Binding Activo}"/>
+                            <DataGridTextColumn x:Name="ColNombre" Header="Nombre" Binding="{Binding Nombre}" />
+                            <DataGridTextColumn x:Name="ColMarca" Header="Marca" Binding="{Binding Marca}"/>
+                            <DataGridTextColumn x:Name="ColModelo" Header="Modelo" Binding="{Binding Modelo}"/>
+                            <DataGridTextColumn x:Name="ColSerial" Header="Serial" Binding="{Binding Serie}"/>
+                            <DataGridTextColumn x:Name="ColMPeriodicidad" Header="Periodicidad De Mantenimiento" Binding="{Binding Periodicidad}"/>
+                            <DataGridTextColumn x:Name="Calibracion" Header="Periodicidad De Calibracion" Binding="{Binding PeriodicidadC}" Width="*"/>
+
+
+                            <!-- BOTON DE ESTADO -->
                             <DataGridTemplateColumn Header="Estado">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-
-                                        <Border CornerRadius="15"
-                                            Padding="12,4"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center">
-
-                                            <!-- COLOR DINÁMICO -->
-                                            <Border.Style>
-                                                <Style TargetType="Border">
-                                                    <Setter Property="Background" Value="Gray"/>
-
-                                                    <Style.Triggers>
-
-                                                        <DataTrigger Binding="{Binding Estado}" Value="Operativo">
-                                                            <Setter Property="Background" Value="#10B981"/>
-                                                        </DataTrigger>
-
-                                                        <DataTrigger Binding="{Binding Estado}" Value="Mantenimiento">
-                                                            <Setter Property="Background" Value="#F59E0B"/>
-                                                        </DataTrigger>
-
-                                                        <DataTrigger Binding="{Binding Estado}" Value="Fuera de Servicio">
-                                                            <Setter Property="Background" Value="#EF4444"/>
-                                                        </DataTrigger>
-
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Border.Style>
-
-                                            <!-- TEXTO -->
-                                            <TextBlock Text="{Binding Estado}"
-                                                Foreground="White"
-                                                FontSize="12"
-                                                FontWeight="SemiBold"
+                                        <Grid>
+                                            <Border Background="#10B981"
+                                                CornerRadius="12"
+                                                    
+                                                Padding="10,4"
                                                 HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"/>
-                                        </Border>
-
+                                                VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Estado}"
+                                                    Foreground="White"
+                                                    FontSize="12"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"/>
+                                            </Border>
+                                        </Grid>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -320,11 +283,11 @@
                             </DataGridTemplateColumn>
 
                         </DataGrid.Columns>
-
+                        
                     </DataGrid>
                 </StackPanel>
             </Border>
         </StackPanel>
     </Grid>
-
+    
 </Window>

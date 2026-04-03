@@ -9,18 +9,14 @@ using System.Threading.Tasks;
     {
         public class Equipo
         {
-            public int Id { get; set; }
             public string Activo { get; set; }
             public string Nombre { get; set; }
-            public string Serie { get; set; }
-            public string Modelo { get; set; }
             public string Marca { get; set; }
+            public string Modelo { get; set; }
+            public string Serie { get; set; }
             public string Periodicidad { get; set; }
-            public string PeriodicidadC {  get; set; }
-            public string Ubicacion { get; set; }
-            public string Responsable { get; set; }
-            public string FechaAdquisicion { get; set; }
             public string Estado { get; set; }
-           
+
+            public string PeriodicidadC {  get; set; }
         }
     }
