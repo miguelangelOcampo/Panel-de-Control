@@ -125,6 +125,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Data\Conexion.cs" />
+    <Compile Include="Data\EquipoDAO.cs" />
     <Compile Include="Models\ColumnaConfig.cs" />
     <Compile Include="Models\PeticionEquipo.cs" />
     <Compile Include="Views\DetalleEquipo.xaml.cs">

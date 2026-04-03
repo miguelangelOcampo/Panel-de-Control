@@ -7,20 +7,21 @@ using System.Threading.Tasks;
 
     namespace Panel_de_Control
     {
-        public class Equipo
-        {
-            public int Id { get; set; }
-            public string Activo { get; set; }
-            public string Nombre { get; set; }
-            public string Serie { get; set; }
-            public string Modelo { get; set; }
-            public string Marca { get; set; }
-            public string Periodicidad { get; set; }
-            public string PeriodicidadC {  get; set; }
-            public string Ubicacion { get; set; }
-            public string Responsable { get; set; }
-            public string FechaAdquisicion { get; set; }
-            public string Estado { get; set; }
-           
-        }
+    public class Equipo
+    {
+        public int Id { get; set; }
+        public string CodigoActivo { get; set; }
+        public string Nombre { get; set; }
+        public string NumeroSerie { get; set; }
+        public string Modelo { get; set; }
+        public string Marca { get; set; }
+        public string PeriodicidadMantenimiento { get; set; }
+        public DateTime? UltimoMantenimiento { get; set; }
+        public string Calibracion { get; set; }
+        public DateTime? UltimaCalibracion{ get; set; }
+        public string Ubicacion { get; set; }
+        public string Responsable { get; set; }
+        public DateTime? FechaAdquisicion { get; set; }
+        public string Estado { get; set; }
     }
+}

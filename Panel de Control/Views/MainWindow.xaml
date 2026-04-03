@@ -241,18 +241,20 @@
                             AutoGenerateColumns="False">
                         
                         <DataGrid.Columns>
-                            <DataGridTextColumn x:Name="Id" Header="Numero Activo" Binding="{Binding Id}" ElementStyle="{StaticResource TextColumnStyle}"/>
-                            <DataGridTextColumn x:Name="Activo" Header="Numero Activo" Binding="{Binding Activo}"/>
-                            <DataGridTextColumn x:Name="Nombre" Header="Nombre" Binding="{Binding Nombre}" />
-                            <DataGridTextColumn x:Name="Serie" Header="Serial" Binding="{Binding Serie}"/>
-                            <DataGridTextColumn x:Name="Modelo" Header="Modelo" Binding="{Binding Modelo}"/>
-                            <DataGridTextColumn x:Name="Marca" Header="Marca" Binding="{Binding Marca}"/>
-                            <DataGridTextColumn x:Name="Periodicidad" Header="Periodicidad De Mantenimiento" Binding="{Binding Periodicidad}"/>
-                            <DataGridTextColumn x:Name="PeriodicidadC" Header="Periodicidad De Calibracion" Binding="{Binding PeriodicidadC}"/>
-                            <DataGridTextColumn x:Name="Ubicacion" Header="Ubicacion" Binding="{Binding Ubicacion}"/>
-                            <DataGridTextColumn x:Name="Responsable" Header="Responsable" Binding="{Binding Responsable}"/>
-                            <DataGridTextColumn x:Name="FechaAdquisicion" Header="Fecha De Adquisicion" Binding="{Binding FechaAdquisicion}" Width="*"/>
-                            
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" ElementStyle="{StaticResource TextColumnStyle}"/>
+                            <DataGridTextColumn Header="Código Activo" Binding="{Binding CodigoActivo}"/>
+                            <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" />
+                            <DataGridTextColumn Header="Serial" Binding="{Binding NumeroSerie}"/>
+                            <DataGridTextColumn Header="Modelo" Binding="{Binding Modelo}"/>
+                            <DataGridTextColumn Header="Marca" Binding="{Binding Marca}"/>
+                            <DataGridTextColumn Header="Periodicidad Mantenimiento" Binding="{Binding PeriodicidadMantenimiento}"/>
+                            <DataGridTextColumn Header="Último Mantenimiento" Binding="{Binding UltimoMantenimiento, StringFormat=dd/MM/yyyy}"/>
+                            <DataGridTextColumn Header="Calibración" Binding="{Binding Calibracion}"/>
+                            <DataGridTextColumn Header="Última calibración" Binding="{Binding UltimaCalibracion, StringFormat=dd/MM/yyyy}"/>
+                            <DataGridTextColumn Header="Ubicación" Binding="{Binding Ubicacion}"/>
+                            <DataGridTextColumn Header="Responsable" Binding="{Binding Responsable}"/>
+                            <DataGridTextColumn Header="Fecha de Adquisición" Binding="{Binding FechaAdquisicion, StringFormat=dd/MM/yyyy}" Width="*"/>
+                            <DataGridTextColumn Header="Estado" Binding="{Binding Estado}"/>
                             <!--COLUMNA ESTADO (COLOR DINAMICO)-->
                             <DataGridTemplateColumn Header="Estado">
                                 <DataGridTemplateColumn.CellTemplate>

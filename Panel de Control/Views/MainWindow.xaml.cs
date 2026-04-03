@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using MySql.Data.MySqlClient;//Agrega la referencia a MySql.Data para poder utilizar las clases relacionadas con MySQL
+using Panel_de_Control.Data;//Agrega la referencia Data para poder utilizar las clases relacionadas con la conexion a la BD y el acceso a los datos de los equipos
 
 namespace Panel_de_Control.Views
 {
@@ -27,6 +28,7 @@ namespace Panel_de_Control.Views
         public MainWindow()
         {
             InitializeComponent();
+            CargarEquipos();
         }
 
         //BOTONES
@@ -45,6 +47,13 @@ namespace Panel_de_Control.Views
             indicadores.Show();
             this.Close();
 
+        }
+
+        //EVENTO PARA CARGAR LOS EQUIPOS EN EL DATA GRID CUANDO SE CARGUE LA VENTANA
+        private void CargarEquipos()
+        {
+            var dao = new EquipoDAO();
+            tablaEquipos.ItemsSource = dao.ObtenerEquipos();//Carga los equipos obtenidos de la base de datos a la propiedad ItemsSource del DataGrid, lo que hace que se muestren en la tabla
         }
         //EVENTO PARA BOTON DE GESTIONAR COLUMNAS
 
