@@ -128,6 +128,9 @@
     <Compile Include="Data\EquipoDAO.cs" />
     <Compile Include="Models\ColumnaConfig.cs" />
     <Compile Include="Models\PeticionEquipo.cs" />
+    <Compile Include="Views\AgregarEquipo.xaml.cs">
+      <DependentUpon>AgregarEquipo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DetalleEquipo.xaml.cs">
       <DependentUpon>DetalleEquipo.xaml</DependentUpon>
     </Compile>
@@ -143,6 +146,10 @@
     <Compile Include="Views\Indicadores.xaml.cs">
       <DependentUpon>Indicadores.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\AgregarEquipo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DetalleEquipo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

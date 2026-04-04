@@ -40,6 +40,16 @@ namespace Panel_de_Control.Views
             this.Close();
         }
 
+        private void Button_AgregarEquipo(object sender, RoutedEventArgs e)
+        {
+            var ventana = new AgregarEquipo();
+
+            if (ventana.ShowDialog() == true)
+            {
+                CargarEquipos();
+            }
+        }
+
         private void Button_Indicadores(object sender, RoutedEventArgs e)
         {
             Indicadores indicadores = new Indicadores();

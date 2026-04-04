@@ -215,8 +215,9 @@
                             Background="#E5E7EB"/>
                         <!--BOTON AGREGAR EQUIPO-->
                         <Button Grid.Column="2"
+                            Click="Button_AgregarEquipo"
                             Style="{StaticResource IconButtonStyle}"
-                            Tag="&#xE9D2;"
+                            Tag="&#xE946;"
                             Content="Agregar Equipo"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Right"
@@ -238,6 +239,8 @@
                             AlternatingRowBackground="#FAFAFA"
                             AlternationCount="2"
                             CanUserAddRows="False"
+                            HorizontalScrollBarVisibility="Auto"
+                            VerticalScrollBarVisibility="Auto"
                             AutoGenerateColumns="False">
                         
                         <DataGrid.Columns>
@@ -253,8 +256,7 @@
                             <DataGridTextColumn Header="Última calibración" Binding="{Binding UltimaCalibracion, StringFormat=dd/MM/yyyy}"/>
                             <DataGridTextColumn Header="Ubicación" Binding="{Binding Ubicacion}"/>
                             <DataGridTextColumn Header="Responsable" Binding="{Binding Responsable}"/>
-                            <DataGridTextColumn Header="Fecha de Adquisición" Binding="{Binding FechaAdquisicion, StringFormat=dd/MM/yyyy}" Width="*"/>
-                            <DataGridTextColumn Header="Estado" Binding="{Binding Estado}"/>
+                            <DataGridTextColumn Header="Fecha de Adquisición" Binding="{Binding FechaAdquisicion, StringFormat=dd/MM/yyyy}" />
                             <!--COLUMNA ESTADO (COLOR DINAMICO)-->
                             <DataGridTemplateColumn Header="Estado">
                                 <DataGridTemplateColumn.CellTemplate>
@@ -282,6 +284,11 @@
 
                                                         <DataTrigger Binding="{Binding Estado}" Value="Fuera de Servicio">
                                                             <Setter Property="Background" Value="#EF4444"/>
+                                                        </DataTrigger>
+                                                        
+                                                        <DataTrigger Binding="{Binding Estado}" Value="Otro">
+                                                            <Setter Property="Background" Value="#6B7280"/>
+                                                            <!-- gris -->
                                                         </DataTrigger>
 
                                                     </Style.Triggers>
