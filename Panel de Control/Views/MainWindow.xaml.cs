@@ -58,6 +58,18 @@ namespace Panel_de_Control.Views
             this.Close();
 
         }
+        private void VerDetalle_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+
+            var equipo = (button.DataContext as Equipo); //IMPORTANTE
+
+            if (equipo != null)
+            {
+                var ventana = new DetalleEquipo(equipo);
+                ventana.Show();
+            }
+        }
 
         //EVENTO PARA CARGAR LOS EQUIPOS EN EL DATA GRID CUANDO SE CARGUE LA VENTANA
         private void CargarEquipos()

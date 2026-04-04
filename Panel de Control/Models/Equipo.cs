@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
     namespace Panel_de_Control
     {
-    public class Equipo
+    public class Equipo//Clase para usar metodos get y set en los atributos del datagrid (Tabla de equipos)
     {
         public int Id { get; set; }
         public string CodigoActivo { get; set; }

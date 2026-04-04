@@ -100,7 +100,7 @@
                     <StackPanel>
 
                         <!-- TITULO -->
-                        <TextBlock Text="Monitor de Signos Vitales"
+                        <TextBlock x:Name="txtNombre"
                                    FontSize="26"
                                    FontWeight="Bold"/>
 
@@ -115,7 +115,7 @@
                             Padding="16,6"
                             VerticalAlignment="Top">
 
-                        <TextBlock Text="Operativo"
+                        <TextBlock x:Name="txtEstado"
                                    Foreground="White"
                                    FontWeight="SemiBold"/>
                     </Border>
@@ -151,7 +151,7 @@
                                 <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE8A7;" Foreground="#2563EB" Margin="0,0,10,0"/>
                                 <StackPanel>
                                     <TextBlock Text="Número de Activo" Foreground="#6B7280"/>
-                                    <TextBlock Text="ACT-001" FontWeight="SemiBold"/>
+                                    <TextBlock x:Name="txtActivo" Text="ACT-001" FontWeight="SemiBold"/>
                                 </StackPanel>
                             </StackPanel>
 
@@ -160,7 +160,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE7F8;" Foreground="#2563EB" Margin="0,0,10,0"/>
                                 <StackPanel>
-                                    <TextBlock Text="Marca y Modelo" Foreground="#6B7280"/>
+                                    <TextBlock x:Name="txtMarcaModelo" Text="Marca y Modelo" Foreground="#6B7280"/>
                                     <TextBlock Text="Philips - IntelliVue MX400" FontWeight="SemiBold"/>
                                 </StackPanel>
                             </StackPanel>
@@ -171,7 +171,7 @@
                                 <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE8A5;" Foreground="#2563EB" Margin="0,0,10,0"/>
                                 <StackPanel>
                                     <TextBlock Text="Número de Serie" Foreground="#6B7280"/>
-                                    <TextBlock Text="SN-12345" FontWeight="SemiBold"/>
+                                    <TextBlock x:Name="txtSerie" Text="SN-12345" FontWeight="SemiBold"/>
                                 </StackPanel>
                             </StackPanel>
 
@@ -181,7 +181,7 @@
                                 <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE895;" Foreground="#2563EB" Margin="0,0,10,0"/>
                                 <StackPanel>
                                     <TextBlock Text="Periodicidad de Mantenimiento" Foreground="#6B7280"/>
-                                    <TextBlock Text="3 meses" FontWeight="SemiBold"/>
+                                    <TextBlock x:Name="txtPeriodicidad" Text="3 meses" FontWeight="SemiBold"/>
                                 </StackPanel>
                             </StackPanel>
 
@@ -209,7 +209,7 @@
                                 <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE707;" Foreground="#2563EB" Margin="0,0,10,0"/>
                                 <StackPanel>
                                     <TextBlock Text="Ubicación" Foreground="#6B7280"/>
-                                    <TextBlock Text="UCI - Habitación 101" FontWeight="SemiBold"/>
+                                    <TextBlock x:Name="txtUbicacion" Text="UCI - Habitación 101" FontWeight="SemiBold"/>
                                 </StackPanel>
                             </StackPanel>
 
@@ -219,7 +219,7 @@
                                 <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE787;" Foreground="#2563EB" Margin="0,0,10,0"/>
                                 <StackPanel>
                                     <TextBlock Text="Fecha de Adquisición" Foreground="#6B7280"/>
-                                    <TextBlock Text="14 de enero de 2023" FontWeight="SemiBold"/>
+                                    <TextBlock x:Name="txtFechaAdquisicion" Text="14 de enero de 2023" FontWeight="SemiBold"/>
                                 </StackPanel>
                             </StackPanel>
 
@@ -229,7 +229,7 @@
                                 <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE77B;" Foreground="#2563EB" Margin="0,0,10,0"/>
                                 <StackPanel>
                                     <TextBlock Text="Responsable" Foreground="#6B7280"/>
-                                    <TextBlock Text="Dr. García" FontWeight="SemiBold"/>
+                                    <TextBlock x:Name="txtResponsable" Text="Dr. García" FontWeight="SemiBold"/>
                                 </StackPanel>
                             </StackPanel>
 

@@ -317,7 +317,8 @@
                                             Background="Transparent"
                                             BorderBrush="#D1D5DB"
                                             BorderThickness="1"
-                                            Cursor="Hand">
+                                            Cursor="Hand"
+                                            Click="VerDetalle_Click">
 
                                             <TextBlock Text="👁"
                                                 FontSize="14"

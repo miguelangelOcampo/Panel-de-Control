@@ -8,10 +8,21 @@ namespace Panel_de_Control.Models
 {
     internal class PeticionEquipo
     {
+        public int Id { get; set; }
+
+        public int EquipoId { get; set; }
+        public int UsuarioId { get; set; }
+
         public string Tipo { get; set; } = "";
-        public string Descripcion { get; set; } = "";
-        public string Fecha { get; set; } = "";
-        public string Tecnico { get; set; } = "";
         public string Estado { get; set; } = "";
+
+        public DateTime Fecha { get; set; }
+
+        // ESTE ES PARA MOSTRAR EN EL DATAGRID (JOIN)
+        public string Tecnico { get; set; } = "";
+
+        // OPCIONAL (si agregas en BD)
+        public string Descripcion { get; set; } = "";
+
     }
 }
