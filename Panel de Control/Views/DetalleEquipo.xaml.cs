@@ -24,26 +24,10 @@ namespace Panel_de_Control.Views
     {
 
         private Equipo _equipo;//Variable privada para almacenar el equipo seleccionado y mostrar sus detalles en la ventana
+                               // Variable para la fila de petición seleccionada
+       
+        private PeticionEquipo _peticionSeleccionada;//Variable para almacenar la peticion seleccionada ( Almacena su Id)
 
-
-        //EVENTO DE CONTROL PARA QUITAR SELECCION AL HACER CLICK
-        private void Window_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            DependencyObject source = e.OriginalSource as DependencyObject;
-
-            // Recorre el árbol visual
-            while (source != null)
-            {
-                // Si el click fue dentro de una FILA del DataGrid → NO deseleccionar
-                if (source is DataGridRow)
-                    return;
-
-                source = VisualTreeHelper.GetParent(source);
-            }
-
-            // Si el click fue fuera del DataGrid → deseleccionar
-            TablaDetalle.UnselectAll();
-        }
 
         //CONSTRUCTOR VACIO
         public DetalleEquipo()
@@ -60,11 +44,12 @@ namespace Panel_de_Control.Views
 
             CargarDatosEquipo();
             CargarPeticiones();
+            cmbEstado.Text = _equipo.Estado;
         }
+
         private void CargarDatosEquipo()//Método para cargar los datos del equipo en los textblocks de la ventana
         {
             txtNombre.Text = _equipo.Nombre ?? "N/A";
-            txtEstado.Text = _equipo.Estado ?? "N/A";
             txtActivo.Text = _equipo.CodigoActivo ?? "N/A";
             txtSerie.Text = _equipo.NumeroSerie ?? "N/A";
             txtPeriodicidad.Text = _equipo.PeriodicidadMantenimiento ?? "N/A";
@@ -79,6 +64,24 @@ namespace Panel_de_Control.Views
             var lista = dao.ObtenerPorEquipo(_equipo.Id);
 
             TablaDetalle.ItemsSource = lista;
+        }
+
+        //EVENTO PARA ACTUALIZAR EL ESTADO DEL EQUIPO EN DETALLE (COMBOBOX)
+        private void cmbEstado_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbEstado.SelectedItem == null || _equipo == null)
+                return;
+
+            string nuevoEstado = (cmbEstado.SelectedItem as ComboBoxItem).Content.ToString();
+
+            // Evitar actualización innecesaria
+            if (_equipo.Estado == nuevoEstado)
+                return;
+
+            _equipo.Estado = nuevoEstado;
+
+            var dao = new EquipoDAO();
+            dao.ActualizarEstado(_equipo.Id, nuevoEstado);
         }
 
 
@@ -100,11 +103,84 @@ namespace Panel_de_Control.Views
         }
         private void Button_Indicadores(object sender, RoutedEventArgs e)
         {
-            MainWindow main = new MainWindow();
-            Application.Current.MainWindow = main;
-            main.Show();
+            Indicadores indicadores = new Indicadores();
+            Application.Current.MainWindow = indicadores;
+            indicadores.Show();
             this.Close();
         }
+
+        private void Button_Refrescar(object sender, RoutedEventArgs e)
+        {
+            CargarDatosEquipo();   // datos del equipo
+            CargarPeticiones();   //recarga la tabla de peticiones del equipo
+        }
+
+        private void Button_EditarEquipo(object sender, RoutedEventArgs e)
+        {
+            var ventana = new AgregarEquipo(_equipo);//Reutilizamos la ventana de agregar equipo pero con el constructor que recibe un equipo para editarlo
+            ventana.EquipoGuardado += (equipoActualizado) =>//Suscribimos al evento para recibir el equipo actualizado después de guardar los cambios
+            {
+                _equipo = equipoActualizado; // actualizar el objeto local
+                CargarDatosEquipo();          // refrescar UI
+                CargarPeticiones();           // si quieres refrescar tabla de peticiones también
+            };
+
+            ventana.ShowDialog();
+        }
+
+        //BOTON PARA REPOTAR UNA NUEVA PETICION PARA EL EQUIPO
+        private void Button_ReportarPeticion(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+
+        //EVENTO PARA ENVIAR LOS DATOS DE LA PETICION SELECCIONADA
+        private void Button_EnviarPeticion(object sender, RoutedEventArgs e)
+        {
+            if (_peticionSeleccionada == null)
+            {
+                MessageBox.Show("Por favor, selecciona una petición para actualizar.", "Atención", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // Actualizar los datos de la petición seleccionada
+            _peticionSeleccionada.Estado = (cmbEstadoPeticion.SelectedItem as ComboBoxItem)?.Content.ToString() ?? "Pendiente";
+            _peticionSeleccionada.CostosGenerados = decimal.TryParse(txtCostoGenerado.Text, out var costo) ? costo : 0;
+
+            // Guardar cambios en la base de datos
+            var dao = new HistorialDAO();
+            dao.ActualizarPeticion(_peticionSeleccionada); // Este método lo creamos en HistorialDAO
+
+            // Refrescar el DataGrid
+            CargarPeticiones();
+
+            // Limpiar selección y campos
+            _peticionSeleccionada = null;
+            txtIdPeticion.Text = "Petición seleccionada: N/A";
+            cmbEstadoPeticion.SelectedIndex = 0;
+            txtCostoGenerado.Clear();
+        }
+
+        //EVENTO SIRVE PARA MOSTRAR EL ID DE LA PETICION SELECCIONADA DE LA FILA DE LA TABLA DE PETICIONES DEL EQUIPO
+        private void TablaDetalle_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (TablaDetalle.SelectedItem is PeticionEquipo peticion)
+            {
+                _peticionSeleccionada = peticion;
+
+                // Mostrar el ID de la petición
+                txtIdPeticion.Text = $"Petición seleccionada: {peticion.Id}";//Actualiza la caja de texto para que aparezca el ID
+
+                // Llenar los campos para editar
+                cmbEstadoPeticion.Text = peticion.EstadoFormateado;
+                txtCostoGenerado.Text = peticion.CostosGenerados.ToString();
+            }
+            else
+            {
+                txtIdPeticion.Text = "Petición seleccionada: N/A";
+                _peticionSeleccionada = null;
+            }
+        }
     }
-    
 }

@@ -3,75 +3,101 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              Title="Detalle Equipo"
              WindowState="Maximized"
-             PreviewMouseDown="Window_PreviewMouseDown"
+             
              Background="#F5F7FA">
     
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Styles/Styles.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
+        <Window.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/Styles/Styles.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Window.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="10">
+        <Grid Background="#F3F4F6">
 
-    <Grid Background="#F3F4F6">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="70"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <!-- ================= NAV ================= -->
-        <Border Grid.Row="0"
+            <!-- ================= NAV ================= -->
+            <Border Grid.Row="0"
         Background="White"
         BorderBrush="#E5E7EB"
         BorderThickness="0,0,0,1">
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="250"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="200"/>
-                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
 
-                <!-- LOGO -->
-                <StackPanel Orientation="Horizontal"
+                    <!-- LOGO -->
+                    <StackPanel Orientation="Horizontal"
                     VerticalAlignment="Center"
                     Margin="20,0,0,0">
 
-                    <Image Source="/Assets/Images/LogoSibioCompleto.png"
+                        <Image Source="/Assets/Images/LogoSibioCompleto.png"
                    Width="85"
                    Height="41"/>
 
-                    <TextBlock Text="Sistema de Gestión Biomédica"
+                        <TextBlock Text="Sistema de Gestión Biomédica"
                        FontSize="11"
                        Foreground="Gray"
                        Margin="10,10,0,0"/>
-                </StackPanel>
+                    </StackPanel>
 
-                <!-- MENU -->
-                <StackPanel Grid.Column="1"
-                    Orientation="Horizontal"
-                    VerticalAlignment="Center"
-                    Margin="20,0,0,0">
+                    <!-- MENU -->
+                    <StackPanel Grid.Column="1"
+            Orientation="Horizontal"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left" Margin="22,0,0,0" Width="499">
 
-                    <Button Style="{StaticResource IconButtonStyle}"
-                    Tag="&#xE80F;"
-                    Content="Panel De Control"
-                    Margin="0,0,20,0"
-                    Click="Button_PanelControl"/>
+                        <!--BOTON PANEL DE CONTROL-->
+                        <Button Grid.Column="1"
+                        Style="{StaticResource IconButtonStyle}"
+                        Tag="&#xE80F;"
+                        Content="Panel De Control"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Margin="20,0,20,0"
+                        Background="#2563EB"
+                        BorderBrush="#C3C7C5"
+                        BorderThickness="1"
+                        Foreground="white"
+                        Click="Button_PanelControl"/>
 
-                    <Button Style="{StaticResource IconButtonStyle}"
-                    Tag="&#xE9D2;"
-                    Content="Indicadores"
-                    Background="#2563EB"
-                    Foreground="White"
-                    BorderBrush="#C3C7C5"
-                    BorderThickness="1"/>
-                </StackPanel>
+                        <!--BOTON INDICADORES-->
+                        <Button Grid.Column="2"
+                        Style="{StaticResource IconButtonStyle}"
+                        Tag="&#xE9D2;"
+                        Content="Indicadores"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,20,0"
+                        Background="#2563EB"
+                        BorderBrush="#C3C7C5"
+                        BorderThickness="1"
+                        Foreground="white"
+                        Click="Button_Indicadores"/>
 
-                <!-- CERRAR -->
-                <Button Grid.Column="2"
+                        <Button Grid.Column="3"
+                        Style="{StaticResource IconButtonStyle}"
+                        Tag="&#xE72C;"
+                        Content=""
+                        VerticalAlignment="Center"
+                        Margin="0,0,10,0"
+                        Background="#2563EB"
+                        BorderBrush="#C3C7C5"
+                        BorderThickness="1"
+                        Foreground="white"
+                        Click="Button_Refrescar" Width="53"/>
+                    </StackPanel>
+
+                    <!-- CERRAR -->
+                    <Button Grid.Column="2"
                 Style="{StaticResource IconButtonStyle}"
                 Tag="&#xE8AC;"
                 Content="Cerrar Sesión"
@@ -82,54 +108,57 @@
                 BorderBrush="#C3C7C5"
                 BorderThickness="1"
                 Click="Button_CerrarSesion"/>
-            </Grid>
-        </Border>
+
+                </Grid>
+            </Border>
 
 
-        <!-- ================= CONTENIDO ================= -->
-        <Grid Grid.Row="1">
+            <!-- ================= CONTENIDO ================= -->
+            <Grid Grid.Row="1">
 
-            <StackPanel>
-                <!-- HEADER -->
-                <Grid Margin="20,20,20,10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <!-- HEADER -->
+                    <Grid Margin="20,20,20,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
 
-                    <StackPanel>
+                        <StackPanel>
 
-                        <!-- TITULO -->
-                        <TextBlock x:Name="txtNombre"
+                            <!-- TITULO -->
+                            <TextBlock x:Name="txtNombre"
                                    FontSize="26"
                                    FontWeight="Bold"/>
 
-                        <TextBlock Text="Trazabilidad y detalles del equipo"
+                            <TextBlock Text="Trazabilidad y detalles del equipo"
                                    Foreground="#6B7280"/>
-                    </StackPanel>
+                        </StackPanel>
 
-                    <!-- OPERATIVO -->
-                    <Border Grid.Column="1"
-                            Background="#10B981"
-                            CornerRadius="5"
-                            Padding="16,6"
-                            VerticalAlignment="Top">
+                        <!-- BOTON DE EDICION DE ESTADO DE EQUIPO-->
+                        <ComboBox x:Name="cmbEstado"
+                        Grid.Column="1"
+                        Width="180"
+                        Style="{StaticResource RoundedComboBox}"
+                        VerticalAlignment="Top"
+                        SelectionChanged="cmbEstado_SelectionChanged">
 
-                        <TextBlock x:Name="txtEstado"
-                                   Foreground="White"
-                                   FontWeight="SemiBold"/>
-                    </Border>
-                </Grid>
+                            <ComboBoxItem Content="Operativo"/>
+                            <ComboBoxItem Content="Mantenimiento"/>
+                            <ComboBoxItem Content="Fuera de Servicio"/>
+                            <ComboBoxItem Content="Otro"/>
+                        </ComboBox>
+                    </Grid>
 
-                <!-- CARDS -->
-                <Grid Margin="20,0,20,10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
+                    <!-- CARDS -->
+                    <Grid Margin="20,0,20,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
 
-                    <!-- CARD IZQ -->
-                    <Border Grid.Column="0"
+                        <!-- CARD IZQ -->
+                        <Border Grid.Column="0"
                             Background="White"
                             Margin="0,0,10,0"
                             Padding="20"
@@ -137,237 +166,286 @@
                             BorderBrush="#E5E7EB"
                             BorderThickness="1">
 
-                        <StackPanel>
+                            <StackPanel>
 
-                            <TextBlock Text="Información General"
+                                <TextBlock Text="Información General"
                                        FontWeight="Bold"/>
 
-                            <TextBlock Text="Datos principales del equipo médico"
+                                <TextBlock Text="Datos principales del equipo médico"
                                        Foreground="#6B7280"
                                        Margin="0,0,0,15"/>
 
-                            <!-- ITEMS -->
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE8A7;" Foreground="#2563EB" Margin="0,0,10,0"/>
-                                <StackPanel>
-                                    <TextBlock Text="Número de Activo" Foreground="#6B7280"/>
-                                    <TextBlock x:Name="txtActivo" Text="ACT-001" FontWeight="SemiBold"/>
+                                <!-- ITEMS -->
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE8A7;" Foreground="#2563EB" Margin="0,0,10,0"/>
+                                    <StackPanel>
+                                        <TextBlock Text="Número de Activo" Foreground="#6B7280"/>
+                                        <TextBlock x:Name="txtActivo" Text="ACT-001" FontWeight="SemiBold"/>
+                                    </StackPanel>
                                 </StackPanel>
-                            </StackPanel>
 
-                            <Separator Margin="0,12"/>
+                                <Separator Margin="0,12"/>
 
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE7F8;" Foreground="#2563EB" Margin="0,0,10,0"/>
-                                <StackPanel>
-                                    <TextBlock x:Name="txtMarcaModelo" Text="Marca y Modelo" Foreground="#6B7280"/>
-                                    <TextBlock Text="Philips - IntelliVue MX400" FontWeight="SemiBold"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE7F8;" Foreground="#2563EB" Margin="0,0,10,0"/>
+                                    <StackPanel>
+                                        <TextBlock x:Name="txtMarcaModelo" Text="Marca y Modelo" Foreground="#6B7280"/>
+                                        <TextBlock Text="Philips - IntelliVue MX400" FontWeight="SemiBold"/>
+                                    </StackPanel>
                                 </StackPanel>
-                            </StackPanel>
 
-                            <Separator Margin="0,12"/>
+                                <Separator Margin="0,12"/>
 
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE8A5;" Foreground="#2563EB" Margin="0,0,10,0"/>
-                                <StackPanel>
-                                    <TextBlock Text="Número de Serie" Foreground="#6B7280"/>
-                                    <TextBlock x:Name="txtSerie" Text="SN-12345" FontWeight="SemiBold"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE8A5;" Foreground="#2563EB" Margin="0,0,10,0"/>
+                                    <StackPanel>
+                                        <TextBlock Text="Número de Serie" Foreground="#6B7280"/>
+                                        <TextBlock x:Name="txtSerie" Text="SN-12345" FontWeight="SemiBold"/>
+                                    </StackPanel>
                                 </StackPanel>
-                            </StackPanel>
 
-                            <Separator Margin="0,12"/>
+                                <Separator Margin="0,12"/>
 
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE895;" Foreground="#2563EB" Margin="0,0,10,0"/>
-                                <StackPanel>
-                                    <TextBlock Text="Periodicidad de Mantenimiento" Foreground="#6B7280"/>
-                                    <TextBlock x:Name="txtPeriodicidad" Text="3 meses" FontWeight="SemiBold"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE895;" Foreground="#2563EB" Margin="0,0,10,0"/>
+                                    <StackPanel>
+                                        <TextBlock Text="Periodicidad de Mantenimiento" Foreground="#6B7280"/>
+                                        <TextBlock x:Name="txtPeriodicidad" Text="3 meses" FontWeight="SemiBold"/>
+                                    </StackPanel>
                                 </StackPanel>
+
                             </StackPanel>
+                        </Border>
 
-                        </StackPanel>
-                    </Border>
-
-                    <!-- CARD DER -->
-                    <Border Grid.Column="1"
+                        <!-- CARD DER -->
+                        <Border Grid.Column="1"
                             Background="White"
                             Padding="20"
                             CornerRadius="12"
                             BorderBrush="#E5E7EB"
                             BorderThickness="1">
 
-                        <StackPanel>
+                            <StackPanel>
 
-                            <TextBlock Text="Detalles Adicionales"
+                                <TextBlock Text="Detalles Adicionales"
                                        FontWeight="Bold"/>
 
-                            <TextBlock Text="Ubicación y responsabilidades"
+                                <TextBlock Text="Ubicación y responsabilidades"
                                        Foreground="#6B7280"
                                        Margin="0,0,0,15"/>
 
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE707;" Foreground="#2563EB" Margin="0,0,10,0"/>
-                                <StackPanel>
-                                    <TextBlock Text="Ubicación" Foreground="#6B7280"/>
-                                    <TextBlock x:Name="txtUbicacion" Text="UCI - Habitación 101" FontWeight="SemiBold"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE707;" Foreground="#2563EB" Margin="0,0,10,0"/>
+                                    <StackPanel>
+                                        <TextBlock Text="Ubicación" Foreground="#6B7280"/>
+                                        <TextBlock x:Name="txtUbicacion" Text="UCI - Habitación 101" FontWeight="SemiBold"/>
+                                    </StackPanel>
                                 </StackPanel>
-                            </StackPanel>
 
-                            <Separator Margin="0,12"/>
+                                <Separator Margin="0,12"/>
 
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE787;" Foreground="#2563EB" Margin="0,0,10,0"/>
-                                <StackPanel>
-                                    <TextBlock Text="Fecha de Adquisición" Foreground="#6B7280"/>
-                                    <TextBlock x:Name="txtFechaAdquisicion" Text="14 de enero de 2023" FontWeight="SemiBold"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE787;" Foreground="#2563EB" Margin="0,0,10,0"/>
+                                    <StackPanel>
+                                        <TextBlock Text="Fecha de Adquisición" Foreground="#6B7280"/>
+                                        <TextBlock x:Name="txtFechaAdquisicion" Text="14 de enero de 2023" FontWeight="SemiBold"/>
+                                    </StackPanel>
                                 </StackPanel>
-                            </StackPanel>
 
-                            <Separator Margin="0,12"/>
+                                <Separator Margin="0,12"/>
 
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE77B;" Foreground="#2563EB" Margin="0,0,10,0"/>
-                                <StackPanel>
-                                    <TextBlock Text="Responsable" Foreground="#6B7280"/>
-                                    <TextBlock x:Name="txtResponsable" Text="Dr. García" FontWeight="SemiBold"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE77B;" Foreground="#2563EB" Margin="0,0,10,0"/>
+                                    <StackPanel>
+                                        <TextBlock Text="Responsable" Foreground="#6B7280"/>
+                                        <TextBlock x:Name="txtResponsable" Text="Dr. García" FontWeight="SemiBold"/>
+                                    </StackPanel>
                                 </StackPanel>
+
                             </StackPanel>
+                        </Border>
+                    </Grid>
 
-                        </StackPanel>
-                    </Border>
-                </Grid>
+                    <!-- TABLA -->
 
-                <!-- TABLA -->
-                <Border Margin="20"
+                    <Border Margin="20"
                         Background="White"
                         Padding="20"
                         CornerRadius="12"
                         BorderBrush="#E5E7EB"
-                        BorderThickness="1">
+                        BorderThickness="1"
+                        >
 
-                    <StackPanel>
+                        <StackPanel>
 
-                        <TextBlock Text="Historial de Peticiones"
+                            <TextBlock Text="Historial de Peticiones"
                                    FontSize="16"
                                    FontWeight="Bold"/>
 
-                        <TextBlock Text="Fallas detectadas, mantenimientos y observaciones registradas"
+                            <TextBlock Text="Fallas detectadas, mantenimientos y observaciones registradas"
                                    Foreground="#6B7280"
                                    Margin="0,0,0,10"/>
 
-                        <!-- BOTON -->
-                        <Button Style="{StaticResource IconButtonStyle}"
-                                HorizontalAlignment="Right"
-                                Padding="14,6"
-                                Background="#2563EB"
-                                Foreground="White"
-                                BorderThickness="0"
-                                Margin="0,0,0,10">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,10">
+                                <!-- BOTON REPORTAR PETICION-->
+                                <Button Grid.Column="1"
+                            Style="{StaticResource IconButtonStyle}"
+                            Tag="&#xE946;"
+                            Content="Reportar Peticion"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Right"
+                            Margin="20,0,20,0"
+                            Background="#2563EB"
+                            BorderBrush="#C3C7C5"
+                            BorderThickness="1"
+                            Foreground="white"
+                            Click="Button_ReportarPeticion"/>
 
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE946;" Margin="0,4,6,0"/>
-                                <TextBlock Text="Reportar Petición"/>
+                                <!--BOTON EDITAR EQUIPO-->
+                                <Button Grid.Column="2"
+                            Style="{StaticResource IconButtonStyle}"
+                            Tag="&#xE70F;"
+                            Content="Editar Equipo"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Right"
+                            Margin="20,0,20,0"
+                            Background="#2563EB"
+                            BorderBrush="#C3C7C5"
+                            BorderThickness="1"
+                            Foreground="white"
+                            Click="Button_EditarEquipo"/>
                             </StackPanel>
-                        </Button>
 
-                        <DataGrid x:Name="TablaDetalle"
+
+                            <DataGrid x:Name="TablaDetalle"
                             Style="{StaticResource ModernDataGrid}"
                             ColumnHeaderStyle="{StaticResource ModernDataGridHeader}"
                             RowStyle="{StaticResource ModernDataGridRow}"
                             CellStyle="{StaticResource ModernDataGridCell}"
+                                  
+                            SelectionChanged="TablaDetalle_SelectionChanged"
+                            
                             Margin="0,10,0,0">
+                                <!--El evento SelectionChanged se utiliza para detectar cuando el usuario selecciona una fila en la tabla.-->
 
-                            <DataGrid.Columns>
+                                <DataGrid.Columns>
+                                    <!--ID de la petición-->
+                                    <DataGridTextColumn Header="ID"
+                                    Binding="{Binding Id}"
+                                    Width="*"
+                                    ElementStyle="{StaticResource TextColumnStyle}"/>
 
-                                <!-- Tipo -->
-                                <DataGridTextColumn Header="Tipo"
+                                    <!-- Tipo -->
+                                    <DataGridTextColumn Header="Tipo"
                                     Binding="{Binding Tipo}"
                                     Width="*"
                                     ElementStyle="{StaticResource TextColumnStyle}"/>
 
-                                <!-- DESCRIPCIÓN -->
-                                <DataGridTextColumn Header="Descripción"
+                                    <!-- DESCRIPCIÓN -->
+                                    <DataGridTextColumn Header="Descripción"
                                     Binding="{Binding Descripcion}"
                                     Width="*"
                                     ElementStyle="{StaticResource TextColumnStyle}"/>
 
-                                <!-- FECHA -->
-                                <DataGridTextColumn Header="Fecha"
+                                    <!-- FECHA -->
+                                    <DataGridTextColumn Header="Fecha"
                                     Binding="{Binding Fecha}"
                                     Width="140"
                                     ElementStyle="{StaticResource TextColumnStyle}"/>
 
-                                <!-- TECNICO -->
-                                <DataGridTextColumn Header="Técnico"
+                                    <!-- TECNICO -->
+                                    <DataGridTextColumn Header="Técnico"
                                     Binding="{Binding Tecnico}"
                                     Width="160"
                                     ElementStyle="{StaticResource TextColumnStyle}"/>
 
-                                <!-- ESTADO -->
-                                <DataGridTemplateColumn Header="Estado" Width="140">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
+                                    <!--FECHA DE RESOLUCIÓN -->
+                                    <DataGridTextColumn Header="Fecha de Resolución"
+                                    Binding="{Binding FechaResolucion}"
+                                    Width="160"
+                                    ElementStyle="{StaticResource TextColumnStyle}"/>
+                                    <!--COSTO GENERADO -->
+                                    <DataGridTextColumn Header="Costo Generado"
+                                    Binding="{Binding CostosGenerados}"
+                                    Width="140"
+                                    ElementStyle="{StaticResource TextColumnStyle}"/>
 
-                                            <Border CornerRadius="15"
-                                                Padding="12,4"
-                                                HorizontalAlignment="Center">
+                                    <!-- ESTADO -->
+                                    <DataGridTemplateColumn Header="Estado" Width="140">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
 
-                                                <Border.Style>
-                                                    <Style TargetType="Border">
-                                                        <Setter Property="Background" Value="Gray"/>
+                                                <Border CornerRadius="15"
+                                                    Padding="12,4"
+                                                    HorizontalAlignment="Center">
 
-                                                        <Style.Triggers>
-
-                                                            <DataTrigger Binding="{Binding Estado}" Value="Pendiente">
-                                                                <Setter Property="Background" Value="#FEE2E2"/>
-                                                            </DataTrigger>
-
-                                                            <DataTrigger Binding="{Binding Estado}" Value="Resuelto">
-                                                                <Setter Property="Background" Value="#DCFCE7"/>
-                                                            </DataTrigger>
-
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </Border.Style>
-
-                                                <TextBlock Text="{Binding Estado}"
-                                                    FontWeight="SemiBold"
-                                                    FontSize="12">
-
-                                                    <TextBlock.Style>
-                                                        <Style TargetType="TextBlock">
-                                                            <Setter Property="Foreground" Value="White"/>
+                                                    <Border.Style>
+                                                        <Style TargetType="Border">
+                                                            <Setter Property="Background" Value="Gray"/>
 
                                                             <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding Estado}" Value="Pendiente">
-                                                                    <Setter Property="Foreground" Value="#DC2626"/>
+
+                                                                <DataTrigger Binding="{Binding Estado}" Value="resuelto">
+                                                                    <Setter Property="Background" Value="#10B981"/>
                                                                 </DataTrigger>
 
-                                                                <DataTrigger Binding="{Binding Estado}" Value="Resuelto">
-                                                                    <Setter Property="Foreground" Value="#059669"/>
+                                                                <DataTrigger Binding="{Binding Estado}" Value="pendiente">
+                                                                    <Setter Property="Background" Value="#F59E0B"/>
                                                                 </DataTrigger>
+
+                                                                <DataTrigger Binding="{Binding Estado}" Value="cancelado">
+                                                                    <Setter Property="Background" Value="#EF4444"/>
+                                                                </DataTrigger>
+
+                                                                <DataTrigger Binding="{Binding Estado}" Value="en proceso">
+                                                                    <Setter Property="Background" Value="#6B7280"/>
+                                                                </DataTrigger>
+
                                                             </Style.Triggers>
                                                         </Style>
-                                                    </TextBlock.Style>
+                                                    </Border.Style>
 
-                                                </TextBlock>
+                                                    <TextBlock Text="{Binding EstadoFormateado}"
+                                                                Foreground="White"
+                                                                FontSize="12"
+                                                                FontWeight="SemiBold"
+                                                                HorizontalAlignment="Center"
+                                                                VerticalAlignment="Center"/>
 
-                                            </Border>
+                                                </Border>
 
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
 
-                            </DataGrid.Columns>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <Border Background="#F3F4F6" Padding="10" CornerRadius="8" Margin="0,10,0,0">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,10,0,0">
+                                    <TextBlock x:Name="txtIdPeticion" Text="Petición seleccionada: N/A" 
+                                    VerticalAlignment="Center" Margin="0,0,20,0"
+                                    FontWeight="Bold"/>
+                                    <ComboBox x:Name="cmbEstadoPeticion" Width="150" Height="35" Style="{StaticResource RoundedComboBox}">
+                                        <ComboBoxItem Content="Pendiente"/>
+                                        <ComboBoxItem Content="En Proceso"/>
+                                        <ComboBoxItem Content="Resuelto"/>
+                                        <ComboBoxItem Content="Cancelado"/>
 
-                        </DataGrid>
+                                    </ComboBox>
+                                    <TextBlock Text="Costo Generado:" VerticalAlignment="Center" Margin="20,0,10,0"/>
+                                    <TextBox x:Name="txtCostoGenerado" Width="100" Height="35" Style="{StaticResource RoundedTextBox}" Tag="Costo"/>
 
-                    </StackPanel>
-                </Border>
+                                    <Button Style="{StaticResource BaseButtonStyle}" Content="Enviar" Width="100" Height="35" Background="#2563EB" Foreground="White" Click="Button_EnviarPeticion"/>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
 
-            </StackPanel>
+                    </Border>
+                </StackPanel>
+
+
+            </Grid>
 
         </Grid>
-
-    </Grid>
+    </ScrollViewer>
 </Window>

@@ -20,6 +20,9 @@ namespace Panel_de_Control.Views
     /// </summary>
     public partial class AgregarEquipo : Window
     {
+        private bool esEdicion = false; //Variables que nos permitiran usar la ventana pero en un modo de edicion
+        private Equipo equipoActual;//Variable para almacenar el equipo que se esta editando
+        public event Action<Equipo> EquipoGuardado; //Evento para notificar a la ventana principal que se ha guardado un equipo, se usa para actualizar la tabla
         public AgregarEquipo()
         {
             InitializeComponent();
@@ -30,10 +33,11 @@ namespace Panel_de_Control.Views
 
             this.Close();
         }
-        private void Button_Guardar(object sender, RoutedEventArgs e)//Convertimos los textbox y combobox a un objeto de equipo para que se puedan usar metodos de obtencion y guardado (set y get)
+        private void Button_Guardar(object sender, RoutedEventArgs e)
         {
-            var equipo = new Equipo//Creamos un objeto pasandole los atributos del equipo como los datos de los textbox y combobox
+            var equipo = new Equipo
             {
+                Id = esEdicion ? equipoActual.Id : 0, // importante para actualizar
                 CodigoActivo = txtCodigoActivo.Text,
                 Nombre = txtNombre.Text,
                 NumeroSerie = txtSerie.Text,
@@ -46,17 +50,48 @@ namespace Panel_de_Control.Views
                 Ubicacion = txtUbicacion.Text,
                 Responsable = txtResponsable.Text,
                 FechaAdquisicion = dpFechaAdquisicion.SelectedDate,
-
-                //ComboBox
                 Estado = (cbEstado.SelectedItem as ComboBoxItem)?.Content.ToString()
             };
 
-            var dao = new EquipoDAO(); //Creamos un objeto de la clase EquipoDAO para usar el metodo de insercion
-            dao.InsertarEquipo(equipo);//usamos el metodo de insercion para guardar el equipo en la base de datos
+            var dao = new EquipoDAO();
 
-            DialogResult = true;//Indicamos que la operacion fue exitosa para que el MainWindow pueda actualizar la lista de equipos
+            if (esEdicion)//Se usa la bandera para saber si se esta editando o agregando un nuevo equipo, si es edicion se llama al metodo actualizar y si no se llama al metodo insertar
+                dao.ActualizarEquipo(equipo); // usa el método actualizar si es edición
+            else
+                dao.InsertarEquipo(equipo);   // usa el método insertar si es nuevo
+
+            EquipoGuardado?.Invoke(equipo);//Dispara el evento para notificar a la ventana principal que se ha guardado un equipo
+            DialogResult = true;
             this.Close();
         }
+        //CONSTRUCTOR PARA MODO EDICION, SE USA EL MISMO XAML PERO CON LOS DATOS DEL EQUIPO SELECCIONADO PARA EDITARLOS
+        public AgregarEquipo(Equipo equipo)
+        {
+            InitializeComponent();
 
+            esEdicion = true;
+            equipoActual = equipo;
+
+            CargarDatos();
+        }
+        //METODO PARA CARGAR LOS DATOS DEL EQUIPO ACTUAL EN LOS TEXTBOX Y COMBOBOX DE LA VENTANA PARA PODER EDITARLOS
+        private void CargarDatos()
+        {
+            txtCodigoActivo.Text = equipoActual.CodigoActivo;
+            txtNombre.Text = equipoActual.Nombre;
+            txtSerie.Text = equipoActual.NumeroSerie;
+            txtModelo.Text = equipoActual.Modelo;
+            txtMarca.Text = equipoActual.Marca;
+            txtPeriodicidad.Text = equipoActual.PeriodicidadMantenimiento;
+            txtCalibracion.Text = equipoActual.Calibracion;
+            txtUbicacion.Text = equipoActual.Ubicacion;
+            txtResponsable.Text = equipoActual.Responsable;
+
+            dpUltimoMantenimiento.SelectedDate = equipoActual.UltimoMantenimiento;
+            dpUltimaCalibracion.SelectedDate = equipoActual.UltimaCalibracion;
+            dpFechaAdquisicion.SelectedDate = equipoActual.FechaAdquisicion;
+
+            cbEstado.Text = equipoActual.Estado;
+        }
     }
 }

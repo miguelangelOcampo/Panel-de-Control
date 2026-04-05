@@ -185,37 +185,7 @@
                 </Border>
 
                 <!-- GRAFICAS -->
-                <TextBlock Text="Mantenimientos"
-                           Style="{StaticResource TitleText}"
-                           FontSize="20"
-                           Margin="0,35,0,15"/>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="20"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-
-                    <!-- BARRAS -->
-                    <Border Style="{StaticResource CardStyle}">
-                        <Canvas Height="240" Background="#F8FAFC">
-                            <Rectangle Canvas.Left="30" Canvas.Bottom="40" Width="25" Height="120" Fill="#2563EB"/>
-                            <Rectangle Canvas.Left="70" Canvas.Bottom="40" Width="25" Height="150" Fill="#2563EB"/>
-                            <Rectangle Canvas.Left="45" Canvas.Bottom="40" Width="25" Height="50" Fill="#14B8A6"/>
-                        </Canvas>
-                    </Border>
-
-                    <!-- LINEA -->
-                    <Border Grid.Column="2" Style="{StaticResource CardStyle}">
-                        <Canvas Height="240" Background="#F8FAFC">
-                            <Polyline Points="30,170 70,90 110,190 150,110"
-                                      Stroke="#2563EB"
-                                      StrokeThickness="3"/>
-                        </Canvas>
-                    </Border>
-
-                </Grid>
+                
 
             </StackPanel>
         </ScrollViewer>

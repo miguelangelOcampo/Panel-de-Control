@@ -430,7 +430,7 @@
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="8"/>
 
-                        <!--  BOTÓN ENCIMA (IMPORTANTE) -->
+                        <!--  BOTÓN ENCIMA  -->
                         <ToggleButton x:Name="ToggleButton"
                                   Background="Transparent"
                                   BorderThickness="0"

@@ -132,6 +132,9 @@
     <Compile Include="Views\AgregarEquipo.xaml.cs">
       <DependentUpon>AgregarEquipo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AgregarPeticion.xaml.cs">
+      <DependentUpon>AgregarPeticion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DetalleEquipo.xaml.cs">
       <DependentUpon>DetalleEquipo.xaml</DependentUpon>
     </Compile>
@@ -148,6 +151,10 @@
       <DependentUpon>Indicadores.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\AgregarEquipo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AgregarPeticion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

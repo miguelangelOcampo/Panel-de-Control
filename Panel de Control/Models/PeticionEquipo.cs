@@ -16,13 +16,24 @@ namespace Panel_de_Control.Models
         public string Tipo { get; set; } = "";
         public string Estado { get; set; } = "";
 
+        public string EstadoFormateado//Formatea el Estado para que se visualice en el datagrid de forma correcta
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Estado)) return "N/A";
+                return char.ToUpper(Estado[0]) + Estado.Substring(1);
+            }
+        }
+
         public DateTime Fecha { get; set; }
 
-        // ESTE ES PARA MOSTRAR EN EL DATAGRID (JOIN)
+        public DateTime? FechaResolucion { get; set; } //permite manejar fechas nulas
+
         public string Tecnico { get; set; } = "";
 
-        // OPCIONAL (si agregas en BD)
         public string Descripcion { get; set; } = "";
+
+        public decimal CostosGenerados { get; set; }
 
     }
 }

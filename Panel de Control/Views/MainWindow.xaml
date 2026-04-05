@@ -69,7 +69,7 @@
                 <StackPanel Grid.Column="1"
                             Orientation="Horizontal"
                             VerticalAlignment="Center"
-                            HorizontalAlignment="Left" Margin="23,0,0,0" Width="322">
+                            HorizontalAlignment="Left" Margin="22,0,0,0" Width="499">
 
                     <!--BOTON PANEL DE CONTROL-->
                     <Button Grid.Column="1"
@@ -97,6 +97,18 @@
                         BorderThickness="1"
                         Foreground="white"
                         Click="Button_Indicadores"/>
+
+                    <Button Grid.Column="3"
+                        Style="{StaticResource IconButtonStyle}"
+                        Tag="&#xE72C;"
+                        Content=""
+                        VerticalAlignment="Center"
+                        Margin="0,0,10,0"
+                        Background="#2563EB"
+                        BorderBrush="#C3C7C5"
+                        BorderThickness="1"
+                        Foreground="white"
+                        Click="Button_Refrescar" Width="53"/>
 
                 </StackPanel>
 
@@ -141,7 +153,7 @@
                 Background="White" Margin="5" Padding="20">
                     <StackPanel>
                         <TextBlock Text="Total de Equipos" FontWeight="SemiBold"/>
-                        <TextBlock Text="6" FontSize="26" FontWeight="Bold" Margin="0,10,0,5"/>
+                        <TextBlock x:Name="txtTotalEquipos" FontSize="26" FontWeight="Bold" Margin="0,10,0,5"/>
                         <TextBlock Text="Equipos registrados" Foreground="#6B7280"/>
                     </StackPanel>
                 </Border>
@@ -151,7 +163,7 @@
                 Background="White" Margin="5" Padding="20">
                     <StackPanel>
                         <TextBlock Text="Operativos" FontWeight="SemiBold"/>
-                        <TextBlock Text="5" FontSize="26" FontWeight="Bold" Margin="0,10,0,5"/>
+                        <TextBlock x:Name="txtOperativos" FontSize="26" FontWeight="Bold" Margin="0,10,0,5"/>
                         <TextBlock Text="Equipos en operación" Foreground="#6B7280"/>
                     </StackPanel>
                 </Border>
@@ -161,7 +173,7 @@
                 Background="White" Margin="5" Padding="20">
                     <StackPanel>
                         <TextBlock Text="En Mantenimiento" FontWeight="SemiBold"/>
-                        <TextBlock Text="1" FontSize="26" FontWeight="Bold" Margin="0,10,0,5"/>
+                        <TextBlock x:Name="txtMantenimiento" FontSize="26" FontWeight="Bold" Margin="0,10,0,5"/>
                         <TextBlock Text="Requieren atención" Foreground="#6B7280"/>
                     </StackPanel>
                 </Border>
@@ -171,7 +183,7 @@
                 Background="White" Margin="5" Padding="20">
                     <StackPanel>
                         <TextBlock Text="Peticiones Pendientes" FontWeight="SemiBold"/>
-                        <TextBlock Text="5" FontSize="26" FontWeight="Bold" Margin="0,10,0,5"/>
+                        <TextBlock x:Name="txtPendientes" FontSize="26" FontWeight="Bold" Margin="0,10,0,5"/>
                         <TextBlock Text="Requieren revisión" Foreground="#6B7280"/>
                     </StackPanel>
                 </Border>
@@ -203,8 +215,11 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-
-                        <TextBox Style="{StaticResource ResourceKey=SearchTextBoxStyle}"/>
+                        <!--BARRA DE BUSQUEDA-->
+                        
+                        <TextBox x:Name="txtBuscar"
+                            Style="{StaticResource ResourceKey=SearchTextBoxStyle}"
+                                 TextChanged="txtBuscar_TextChanged"/>
 
 
                         <!--BOTON GESTIONAR COLUMNAS-->
@@ -242,9 +257,8 @@
                             HorizontalScrollBarVisibility="Auto"
                             VerticalScrollBarVisibility="Auto"
                             AutoGenerateColumns="False">
-                        
+
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" ElementStyle="{StaticResource TextColumnStyle}"/>
                             <DataGridTextColumn Header="Código Activo" Binding="{Binding CodigoActivo}"/>
                             <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" />
                             <DataGridTextColumn Header="Serial" Binding="{Binding NumeroSerie}"/>
@@ -285,7 +299,7 @@
                                                         <DataTrigger Binding="{Binding Estado}" Value="Fuera de Servicio">
                                                             <Setter Property="Background" Value="#EF4444"/>
                                                         </DataTrigger>
-                                                        
+
                                                         <DataTrigger Binding="{Binding Estado}" Value="Otro">
                                                             <Setter Property="Background" Value="#6B7280"/>
                                                             <!-- gris -->
@@ -321,6 +335,26 @@
                                             Click="VerDetalle_Click">
 
                                             <TextBlock Text="👁"
+                                                FontSize="14"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"/>
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <!-- BOTON ELIMINAR -->
+                            <DataGridTemplateColumn Header="Eliminar" Width="80">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Width="30"
+                                                Height="30"
+                                                Background="#EF4444"
+                                                Foreground="White"
+                                                BorderBrush="Transparent"
+                                                Cursor="Hand"
+                                                Click="Eliminar_Click">
+
+                                            <TextBlock Text="🗑"
                                                 FontSize="14"
                                                 HorizontalAlignment="Center"
                                                 VerticalAlignment="Center"/>
