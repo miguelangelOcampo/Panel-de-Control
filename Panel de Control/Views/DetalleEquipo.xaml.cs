@@ -131,7 +131,14 @@ namespace Panel_de_Control.Views
         //BOTON PARA REPOTAR UNA NUEVA PETICION PARA EL EQUIPO
         private void Button_ReportarPeticion(object sender, RoutedEventArgs e)
         {
-           
+            // Crear instancia de la ventana y pasarle el Id del equipo si quieres asociar la petición
+            var ventana = new AgregarPeticion(_equipo.Id);
+
+            // Mostrar la ventana como diálogo modal (no permite interactuar con la ventana principal hasta cerrarla)
+            ventana.ShowDialog();
+
+            // Opcional: después de cerrar la ventana, puedes recargar el DataGrid si se agregó una nueva petición
+            CargarPeticiones();
         }
 
 

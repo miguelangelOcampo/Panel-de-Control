@@ -127,8 +127,11 @@
     <Compile Include="Data\Conexion.cs" />
     <Compile Include="Data\EquipoDAO.cs" />
     <Compile Include="Data\HistorialDAO.cs" />
+    <Compile Include="Data\IndicadoresDAO.cs" />
+    <Compile Include="Data\UsuarioDAO.cs" />
     <Compile Include="Models\ColumnaConfig.cs" />
     <Compile Include="Models\PeticionEquipo.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Views\AgregarEquipo.xaml.cs">
       <DependentUpon>AgregarEquipo.xaml</DependentUpon>
     </Compile>

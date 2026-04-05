@@ -114,8 +114,7 @@
                         <StackPanel>
                             <TextBlock Text="↻" HorizontalAlignment="Right" Foreground="#14B8A6"/>
                             <TextBlock Text="Tasa de Operatividad" Style="{StaticResource SubtitleText}"/>
-                            <TextBlock Text="83.3%" Style="{StaticResource BigNumberText}" Margin="0,8,0,0"/>
-                            <TextBlock Text="+2.5% vs mes anterior" Foreground="#14B8A6"/>
+                            <TextBlock x:Name="txtOperatividad"  Style="{StaticResource BigNumberText}" Margin="0,8,0,0"/>
                         </StackPanel>
                     </Border>
 
@@ -124,7 +123,7 @@
                         <StackPanel>
                             <TextBlock Text="⏱" HorizontalAlignment="Right" Foreground="#3B82F6"/>
                             <TextBlock Text="Tiempo Promedio Resolución" Style="{StaticResource SubtitleText}"/>
-                            <TextBlock Text="3.2 días" Style="{StaticResource BigNumberText}"/>
+                            <TextBlock x:Name="txtTiempo" Style="{StaticResource BigNumberText}"/>
                         </StackPanel>
                     </Border>
 
@@ -133,7 +132,7 @@
                         <StackPanel>
                             <TextBlock Text="⚠" HorizontalAlignment="Right" Foreground="#EF4444"/>
                             <TextBlock Text="Alertas Críticas" Style="{StaticResource SubtitleText}"/>
-                            <TextBlock Text="3" Style="{StaticResource BigNumberText}"/>
+                            <TextBlock x:Name="txtAlertas"  Style="{StaticResource BigNumberText}"/>
                         </StackPanel>
                     </Border>
 
@@ -142,7 +141,7 @@
                         <StackPanel>
                             <TextBlock Text="$" HorizontalAlignment="Right" Foreground="#8B5CF6"/>
                             <TextBlock Text="Costo Promedio Mensual" Style="{StaticResource SubtitleText}"/>
-                            <TextBlock Text="$49.500" Style="{StaticResource BigNumberText}"/>
+                            <TextBlock x:Name="txtCostos" Style="{StaticResource BigNumberText}"/>
                         </StackPanel>
                     </Border>
                 </Grid>
@@ -151,36 +150,25 @@
                 <Border Style="{StaticResource CardStyle}" Margin="0,30,0,0" BorderBrush="#E5E7EB" BorderThickness="1">
                     <StackPanel>
 
-                        <TextBlock Text="⚠ Equipos que Requieren Atención"
+                        <TextBlock Text="⚠ Equipos con pendientes"
                                    FontSize="16"
                                    FontWeight="SemiBold"
                                    Foreground="#EF4444"/>
 
-                        <StackPanel Margin="0,15,0,0">
-
-                            <Border Style="{StaticResource InnerCardStyle}">
-                                <Grid>
-                                    <TextBlock Text="Ventilador UCI 102"/>
-                                    <Border Style="{StaticResource BadgeStyle}"
-                                            Background="#EF4444"
-                                            HorizontalAlignment="Right">
-                                        <TextBlock Text="Alta" Style="{StaticResource BadgeTextStyle}"/>
-                                    </Border>
-                                </Grid>
-                            </Border>
-
-                            <Border Style="{StaticResource InnerCardStyle}">
-                                <Grid>
-                                    <TextBlock Text="Desfibrilador Urgencias"/>
-                                    <Border Style="{StaticResource BadgeStyle}"
-                                            Background="#3B82F6"
-                                            HorizontalAlignment="Right">
-                                        <TextBlock Text="Media" Style="{StaticResource BadgeTextStyle}"/>
-                                    </Border>
-                                </Grid>
-                            </Border>
-
-                        </StackPanel>
+                        <Border Style="{StaticResource CardStyle}" 
+                                Margin="0,30,0,0" 
+                                BorderBrush="#E5E7EB" 
+                                BorderThickness="1">
+                            <StackPanel>
+                                <!-- TÍTULO -->
+                                <TextBlock Text="Código Activo"
+                                    FontSize="16"
+                                    FontWeight="SemiBold"
+                                    Margin="0,0,0,10"/>
+                                <!-- LISTA DINÁMICA -->
+                                <StackPanel x:Name="panelEquiposPendientes"/>
+                            </StackPanel>
+                        </Border>
                     </StackPanel>
                 </Border>
 

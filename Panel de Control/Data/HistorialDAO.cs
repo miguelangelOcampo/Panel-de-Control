@@ -85,9 +85,9 @@ namespace Panel_de_Control.Data
 
                 string query = @"
             INSERT INTO historial_peticiones
-            (equipo_id, usuario_id, tipo, descripcion, estado, tecnico, fecha, fecha_resolucion, costos_generados)
+            (equipo_id, usuario_id, tipo, descripcion, estado, fecha, fecha_resolucion, costos_generados)
             VALUES
-            (@equipoId, @usuarioId, @tipo, @descripcion, @estado, @tecnico, @fecha, @fechaResolucion, @costos)";
+            (@equipoId, @usuarioId, @tipo, @descripcion, @estado, @fecha, @fechaResolucion, @costos)";
 
                 var cmd = new MySqlCommand(query, conn);
 
@@ -96,7 +96,6 @@ namespace Panel_de_Control.Data
                 cmd.Parameters.AddWithValue("@tipo", peticion.Tipo);
                 cmd.Parameters.AddWithValue("@descripcion", peticion.Descripcion);
                 cmd.Parameters.AddWithValue("@estado", peticion.Estado);
-                cmd.Parameters.AddWithValue("@tecnico", peticion.Tecnico);
                 cmd.Parameters.AddWithValue("@fecha", peticion.Fecha);
                 cmd.Parameters.AddWithValue("@fechaResolucion", peticion.FechaResolucion ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@costos", peticion.CostosGenerados);
@@ -113,17 +112,20 @@ namespace Panel_de_Control.Data
             using (var conn = conexion.ObtenerConexion())
             {
                 conn.Open();
-                //CREA LA CONSULTA SQL ADEMAS EN CASO DE QUE LA EXPRESION SEA RESUELTO O CANELADO, SE ACTUALIZA LA FECHA DE RESOLUCION, SI NO SE DEJA IGUAL
+
                 string query = @"
-                UPDATE historial_peticiones
-                SET estado = @estado,
-                costos_generados = @costos,
-                fecha_resolucion = CASE WHEN @estado IN ('resuelto', 'cancelado') THEN NOW() ELSE fecha_resolucion END
-                WHERE id = @id";
+        UPDATE historial_peticiones
+        SET estado = @estado,
+            costos_generados = @costos,
+            fecha_resolucion = CASE
+                WHEN @estado IN ('resuelto', 'cancelado') THEN NOW()
+                WHEN @estado IN ('pendiente', 'en proceso') THEN NULL
+                ELSE fecha_resolucion
+            END
+        WHERE id = @id";
 
                 var cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@estado", peticion.Estado);
-                cmd.Parameters.AddWithValue("@tecnico", peticion.Tecnico);
                 cmd.Parameters.AddWithValue("@costos", peticion.CostosGenerados);
                 cmd.Parameters.AddWithValue("@id", peticion.Id);
 
